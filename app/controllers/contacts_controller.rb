@@ -12,7 +12,8 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
-    @contact = Contact.build
+    @contact = Contact.new
+    @contact.properties.build
   end
 
   # GET /contacts/1/edit
@@ -65,6 +66,17 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:name, :contact_type, :email)
+      params.require(:contact).permit(:name, :contact_type, :email, properties_attributes:
+        [
+          :id,
+          :name,
+          :plantation_area,
+          :plant_specie,
+          :plants_number,
+          :plants_row_spacing,
+          :plants_column_spacing,
+          :_destroy
+          ]
+        )
     end
 end
