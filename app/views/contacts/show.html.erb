@@ -29,8 +29,8 @@
     <li><%= p.plants_row_spacing %></li>
     <li><%= p.plants_column_spacing %></li>
     <li>Plants number: <%= p.plants_number %></li>
-    <%= link_to 'Edit', edit_contact_property_path([@contact, @property]) %> |
-    <%= link_to 'Destroy', [@contact, @property], method: :delete %>
+    <%= link_to 'Edit', edit_contact_property_path(@contact, p) %> |
+    <%= link_to 'Delete', [@contact, p], method: :delete, data: { confirm: 'Are you sure ou want to delete this property?' } %>
   <% end %>
 <% end %>
 
