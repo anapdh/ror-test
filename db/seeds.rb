@@ -19,7 +19,7 @@ end
 properties = [
   { name: 'Property1', plantation_area: 100, plant_specie: 'Cucumber', plants_row_spacing: 2, plants_column_spacing: 2, contact_id: 1 },
   { name: 'Property2', plantation_area: 200, plant_specie: 'Tomato', plants_row_spacing: 3, plants_column_spacing: 3, contact_id: 1 },
-  { name: 'Property3', plantation_area: 300, plant_specie: 'Potato', plants_row_spacing: 4, plants_column_spacing: 4, contact_id: 2 }
+  { name: 'Property3', plantation_area: 300, plant_specie: 'Potato', plants_row_spacing: 4, plants_column_spacing: 4, contact_id: 1 }
 ]
 
 properties.each do |property|
