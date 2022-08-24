@@ -7,7 +7,7 @@ class Property < ApplicationRecord
   validates :plants_row_spacing, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :plants_column_spacing, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  belongs_to :contact, dependent: :destroy
+  belongs_to :contact
 
   def plants_number_calc
     calc = (plantation_area / (plants_row_spacing * plants_column_spacing)).to_i
