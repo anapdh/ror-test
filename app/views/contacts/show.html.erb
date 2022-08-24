@@ -32,11 +32,9 @@
     <%= link_to 'Edit', edit_contact_property_path(@contact, p) %> |
     <%= link_to 'Delete', [@contact, p], method: :delete, data: { confirm: 'Are you sure ou want to delete this property?' } %>
   <% end %>
+  <br>
+  <%= link_to 'New Property', new_contact_property_path(@contact) %>
 <% end %>
-
-<br>
-
-<%= link_to 'New Property', new_contact_property_path(@contact) %>
 
 <br>
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
