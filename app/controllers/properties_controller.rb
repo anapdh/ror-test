@@ -1,9 +1,11 @@
 class PropertiesController < ApplicationController
+  before_action :set_contact
   before_action :set_property, only: %i[ show edit update destroy ]
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @properties = @contact.properties
+    # @properties = Property.all
   end
 
   # GET /properties/1 or /properties/1.json
@@ -12,7 +14,8 @@ class PropertiesController < ApplicationController
 
   # GET /properties/new
   def new
-    @property = Property.new
+    @property = @contact.properties.build
+    # @property = Property.new
   end
 
   # GET /properties/1/edit
@@ -21,11 +24,12 @@ class PropertiesController < ApplicationController
 
   # POST /properties or /properties.json
   def create
-    @property = Property.new(property_params)
+    @property = @contact.properties.build(property_params)
+    # @property = Property.new(property_params)
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to property_url(@property), notice: "Property was successfully created." }
+        format.html { redirect_to [@contact, @property], notice: "Property was successfully created." }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +42,7 @@ class PropertiesController < ApplicationController
   def update
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to property_url(@property), notice: "Property was successfully updated." }
+        format.html { redirect_to [@contact, @property], notice: "Property was successfully updated." }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +56,23 @@ class PropertiesController < ApplicationController
     @property.destroy
 
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: "Property was successfully destroyed." }
+      format.html { redirect_to [@contact, :properties], notice: "Property was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_contact
+      @contact = Contact.find(params[:contact_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_property
-      @property = Property.find(params[:id])
+      @property = @contact.properties.find(params[:id])
+      # @property = Property.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :plantation_area, :plant_specie, :plants_number, :plants_row_spacing, :plants_column_spacing)
+      params.require(:property).permit(:name, :plantation_area, :plant_specie, :plants_number, :plants_row_spacing, :plants_column_spacing, :contact_id)
     end
 end

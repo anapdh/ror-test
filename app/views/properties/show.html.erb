@@ -30,5 +30,7 @@
   <%= @property.plants_column_spacing %>
 </p>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+<%= link_to 'Edit', edit_contact_property_path([@contact, @property]) %> |
+<%= link_to 'Back', [@contact, :properties] %>
+
+<%= button_to "Destroy", [@contact, @property], method: :delete %>

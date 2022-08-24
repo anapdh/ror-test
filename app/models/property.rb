@@ -5,4 +5,6 @@ class Property < ApplicationRecord
   # validates :plants_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :plants_row_spacing, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :plants_column_spacing, presence: true, numericality: { only_integer: true, greater_than: 0 }
+
+  belongs_to :contact, dependent: :destroy
 end

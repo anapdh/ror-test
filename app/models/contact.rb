@@ -3,7 +3,7 @@ class Contact < ApplicationRecord
   validates :contact_type, presence: true, inclusion: { in: ['Client', 'Provider'] }
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  has_many :properties, dependent: :destroy
+  has_many :properties
   validates_length_of :properties, maximum: 3
   accepts_nested_attributes_for :properties
 

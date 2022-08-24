@@ -29,8 +29,11 @@
     <li><%= p.plants_number %></li>
     <li><%= p.plants_row_spacing %></li>
     <li><%= p.plants_column_spacing %></li>
+    <%= link_to 'Edit', edit_contact_property_path([@contact, @property]) %> |
+    <%= link_to 'Destroy', [@contact, @property], method: :delete %>
   <% end %>
 <% end %>
 
+<br>
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
 <%= link_to 'Back', contacts_path %>
