@@ -23,19 +23,21 @@
   </p>
 
   <% @contact.properties.each do |p| %>
-    <li><%= p.name %></li>
-    <li><%= p.plantation_area %></li>
-    <li><%= p.plant_specie %></li>
-    <li><%= p.plants_row_spacing %></li>
-    <li><%= p.plants_column_spacing %></li>
-    <li>Plants number: <%= p.plants_number %></li>
-    <%= link_to 'Edit', edit_contact_property_path(@contact, p) %> |
+    <li>Property Name: <%= p.name %></li>
+    <li>Plantation Area: <%= p.plantation_area %>m</li>
+    <li>Plant Specie: <%= p.plant_specie %></li>
+    <li>Row Spacing: <%= p.plants_row_spacing %>m</li>
+    <li>Column Spacing: <%= p.plants_column_spacing %>m</li>
+    <br>
+    <li>Number of plants available for this area: <strong><%= p.plants_number %></strong></li>
+    <%= link_to 'Edit Property', edit_contact_property_path(@contact, p) %> |
     <%= link_to 'Delete', [@contact, p], method: :delete, data: { confirm: 'Are you sure ou want to delete this property?' } %>
   <% end %>
   <br>
-  <%= link_to 'New Property', new_contact_property_path(@contact) %>
+  <br>
+  <%= link_to 'Add New Property', new_contact_property_path(@contact) %>
 <% end %>
-
 <br>
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<br>
+<%= link_to 'Edit Contact', edit_contact_path(@contact) %> |
+<%= link_to 'Back to Contacts', contacts_path %>
