@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :contacts do
-    resources :properties
+    resources :properties, module: :contacts
   end
 
   devise_for :users

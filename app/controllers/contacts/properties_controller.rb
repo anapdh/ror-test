@@ -1,4 +1,4 @@
-class PropertiesController < ApplicationController
+class Contacts::PropertiesController < ApplicationController
   before_action :set_contact
   before_action :set_property, only: %i[ show edit update destroy ]
 
