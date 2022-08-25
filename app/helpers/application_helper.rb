@@ -1,11 +1,22 @@
 module ApplicationHelper
-  # def link_to_add_fields(name, f, association)
-  #   new_object = f.object.send(association).klass.new
-  #   id = new_object.object_id
-  #   fields = f.fields_for(association, new_object, child_index: id) do |builder|
-  #     render(association.to_s.singularize + '_fields', f: builder)
-  #   end
+  def display_functional_navigation(_user)
+    out = ''
+    out +=
+      if user_signed_in?
+        "<li class='nav-link'>#{link_to(current_user.email)} #{user_type(_user)}</li>
+        <li class='nav-link'>#{link_to('Logout', destroy_user_session_path, method: 'delete', id: 'logout_btn')}</li>"
+      else
+        "<li class='nav-link'>#{link_to('Login', new_user_session_path)}</li>
+        <li class='nav-link'>#{link_to('Sign up', new_user_registration_path)}</li>"
+      end
+    out.html_safe
+  end
 
-  #   link_to(name, '#', class: 'add_fields', data: {id: id, fields: fields.gsub("\n", '')})
-  # end
+  def user_type(_user)
+    if current_user.is_admin?
+      '(logged as Admin)'
+    else
+      '(logged as guest)'
+    end
+  end
 end
