@@ -30,7 +30,11 @@
   <%= @property.plants_column_spacing %>
 </p>
 
-<%= link_to 'Edit', edit_contact_property_path %> |
+<% if current_user.is_admin? %>
+  <%= link_to 'Edit', edit_contact_property_path %> |
+<% end %>
 <%= link_to 'Back', @contact %>
 
-<%= button_to "Destroy", [@contact, @property], method: :delete %>
+<% if current_user.is_admin? %>
+  <%= button_to "Destroy", [@contact, @property], method: :delete %>
+<% end %>
