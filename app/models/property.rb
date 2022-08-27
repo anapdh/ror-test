@@ -4,13 +4,12 @@ class Property < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 3, maximum: 25 }
   validates :plantation_area, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  # validates :plant_specie, presence: true, length: { maximum: 25 }
   validates :plants_row_spacing, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :plants_column_spacing, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   belongs_to :contact
 
-  has_many :plants
+  has_many :plants, dependent: :destroy
   accepts_nested_attributes_for :plants, allow_destroy: true
 
   def plants_number_calc

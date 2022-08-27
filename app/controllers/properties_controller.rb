@@ -71,7 +71,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      byebug
       params.require(:property).permit(:name, :plantation_area, :plant_specie, :plants_number, :plants_row_spacing, :plants_column_spacing,
         plants_attributes: [:id, :name, :_destroy])
     end
