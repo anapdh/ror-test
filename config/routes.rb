@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root to: "contacts#index"
 
   resources :contacts do
-    resources :properties, module: :contacts
+    resources :properties
   end
 end

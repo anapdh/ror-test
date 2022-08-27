@@ -25,7 +25,9 @@
   <% @contact.properties.each do |p| %>
     <li>Property Name: <%= p.name %></li>
     <li>Plantation Area: <%= p.plantation_area %>m</li>
-    <li>Plant Specie: <%= p.plant_specie %></li>
+      <% p.plants.each do | plant | %>
+        <li>Plant Specie: <%= plant.name %></li>
+      <% end %>
     <li>Row Spacing: <%= p.plants_row_spacing %>m</li>
     <li>Column Spacing: <%= p.plants_column_spacing %>m</li>
     <br>

@@ -21,9 +21,16 @@
     <%= form.number_field :plantation_area %><small> in meters</small>
   </div>
 
-  <div class="field">
+  <%# <div class="field">
     <%= form.label :plant_specie %>
-    <%= form.text_field :plant_specie %>
+    <%# <%= form.select property.plant_specie.name, PlantSpecie::PLANT_SPECIE_OPTIONS %>
+  <%# </div> %>
+
+  <div class="field">
+    <%= form.fields_for :plants do |s| %>
+      <%= s.label :name, 'Plant Specie' %>
+      <%= s.text_field :name %>
+    <% end %>
   </div>
 
   <div class="field">

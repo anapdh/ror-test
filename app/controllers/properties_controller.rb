@@ -1,11 +1,10 @@
-class Contacts::PropertiesController < ApplicationController
+class PropertiesController < ApplicationController
   before_action :set_contact
   before_action :set_property, only: %i[ show edit update destroy ]
 
   # GET /properties or /properties.json
   def index
     @properties = @contact.properties
-    # @properties = Property.all
   end
 
   # GET /properties/1 or /properties/1.json
@@ -15,8 +14,7 @@ class Contacts::PropertiesController < ApplicationController
   # GET /properties/new
   def new
     @property = @contact.properties.build
-
-    # @property = Property.new
+    @property.plants.build
   end
 
   # GET /properties/1/edit
@@ -26,7 +24,6 @@ class Contacts::PropertiesController < ApplicationController
   # POST /properties or /properties.json
   def create
     @property = @contact.properties.build(property_params)
-    # @property = Property.new(property_params)
 
     respond_to do |format|
       if @property.save
@@ -74,6 +71,8 @@ class Contacts::PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :plantation_area, :plant_specie, :plants_number, :plants_row_spacing, :plants_column_spacing)
+      byebug
+      params.require(:property).permit(:name, :plantation_area, :plant_specie, :plants_number, :plants_row_spacing, :plants_column_spacing,
+        plants_attributes: [:id, :name, :_destroy])
     end
 end

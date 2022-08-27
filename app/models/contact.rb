@@ -7,6 +7,9 @@ class Contact < ApplicationRecord
   validates_length_of :properties, maximum: 3
   accepts_nested_attributes_for :properties, allow_destroy: true
 
+  has_many :plants, through: :properties
+  accepts_nested_attributes_for :plants, allow_destroy: true
+
   CONTACT_OPTIONS = [
     ['Client', 'Client'],
     ['Provider', 'Provider']
