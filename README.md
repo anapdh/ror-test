@@ -8,7 +8,7 @@ To run this app you'll need:
 
 * Ruby version: 2.7.5
 * Rails version: 5.2.8.1
-* MySQL version: 12
+* MySQL2
 
 ## Setup
 
