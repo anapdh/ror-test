@@ -64,14 +64,16 @@ RSpec.describe Contact, type: :model do
   end
 
   describe 'methods' do
-    it 'is a provider' do
-      contact.contact_type = 'Provider'
-      expect(contact.is_provider?).to be true
-    end
+    describe '#is_provider?' do
+      it 'is a provider' do
+        contact.contact_type = 'Provider'
+        expect(contact.is_provider?).to be true
+      end
 
-    it 'is not a provider' do
-      contact.contact_type = 'Client'
-      expect(contact.is_provider?).to be false
+      it 'is not a provider' do
+        contact.contact_type = 'Client'
+        expect(contact.is_provider?).to be false
+      end
     end
   end
 
