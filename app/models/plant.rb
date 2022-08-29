@@ -7,7 +7,7 @@ class Plant < ApplicationRecord
   belongs_to :property
 
   def set_plant_specie_name
-    property.plant_specie = self.name
+    property.plant_specie = name
     property.save
   end
 end
