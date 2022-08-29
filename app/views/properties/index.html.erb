@@ -20,9 +20,7 @@
       <tr>
         <td><%= property.name %></td>
         <td><%= property.plantation_area %></td>
-        <% property.plants.each do | plant | %>
-          <td><%= plant.name %></td>
-        <% end %>
+        <td><%= property.plant_specie %></td>
         <td><%= property.plants_number %></td>
         <td><%= property.plants_row_spacing %></td>
         <td><%= property.plants_column_spacing %></td>
