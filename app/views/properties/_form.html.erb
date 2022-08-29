@@ -24,7 +24,7 @@
   <div class="field">
     <%= form.fields_for :plants do |s| %>
       <%= s.label :name, 'Plant Specie' %>
-      <%= s.text_field :name %>
+      <%= s.select :name, Plant::PLANT_SPECIES_OPTIONS, include_blank: true %>
     <% end %>
   </div>
 
