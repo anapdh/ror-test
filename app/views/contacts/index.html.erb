@@ -19,7 +19,7 @@
         <td><%= contact.contact_type %></td>
         <td><%= contact.email %></td>
         <td><%= link_to 'Details', contact %></td>
-        <% if current_user.is_admin? %>
+        <% if current_user.admin? %>
           <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
           <td><%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -30,6 +30,6 @@
 
 <br>
 
-<% if current_user.is_admin? %>
+<% if current_user.admin? %>
   <%= link_to 'New Contact', new_contact_path %>
 <% end %>

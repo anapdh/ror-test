@@ -1,8 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Property, type: :model do
-  let(:contact) { Contact.create(name: 'John Doe', contact_type: 'Client', email: 'examplle@example.com') }
-  let(:property) { Property.new(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10, contact_id: contact.id) }
+  let(:contact) { Contact.create(name: 'John Doe', contact_type: 'Provider', email: 'examplle@example.com') }
+  let(:property) do
+    Property.new(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10,
+                 contact_id: contact.id)
+  end
 
   describe 'validations' do
     it 'is valid with valid attributes' do
@@ -106,19 +111,24 @@ RSpec.describe Property, type: :model do
 
     describe '#set_properties_max' do
       it 'has a max of 3 properties per contact' do
-        contact.properties.create(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-        contact.properties.create(name: 'Property 2', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-        contact.properties.create(name: 'Property 3', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-        property4 = contact.properties.create(name: 'Property 4', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-        expect(property4.errors.messages).to eq(:base => ["You can only have 3 properties per contact"])
+        contact.properties.create(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10,
+                                  plants_column_spacing: 10)
+        contact.properties.create(name: 'Property 2', plantation_area: 100, plants_row_spacing: 10,
+                                  plants_column_spacing: 10)
+        contact.properties.create(name: 'Property 3', plantation_area: 100, plants_row_spacing: 10,
+                                  plants_column_spacing: 10)
+        property4 = contact.properties.create(name: 'Property 4', plantation_area: 100, plants_row_spacing: 10,
+                                              plants_column_spacing: 10)
+        expect(property4.errors.messages).to eq(base: ['You can only have 3 properties per contact'])
       end
     end
   end
 
   describe 'nested attributes' do
-    let(:property_with_plants) { Property.new(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10, contact_id: contact.id,
-      plants_attributes: [{ name: 'PlantSpecie' }])
-    }
+    let(:property_with_plants) do
+      Property.new(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10,
+                   plants_column_spacing: 10, contact_id: contact.id, plants_attributes: [{ name: 'PlantSpecie' }])
+    end
 
     it 'accepts nested attributes for properties' do
       expect(property_with_plants).to be_valid

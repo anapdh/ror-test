@@ -15,7 +15,7 @@
   <%= @contact.email %>
 </p>
 
-<% if @contact.is_provider? %>
+<% if @contact.provider? %>
   <p>
     <strong>Available Properties:
       <%= @contact.properties.count %>
@@ -32,7 +32,7 @@
     <li>Column Spacing: <%= p.plants_column_spacing %>m</li>
     <br>
     <li>Number of plants available for this area: <strong><%= p.plants_number %></strong></li>
-      <% if current_user.is_admin? %>
+      <% if current_user.admin? %>
         <%= link_to 'Edit Property', edit_contact_property_path(@contact, p) %> |
         <%= link_to 'Delete', [@contact, p], method: :delete, data: { confirm: 'Are you sure ou want to delete this property?' } %>
       <% end %>
@@ -40,14 +40,14 @@
   <% end %>
   <br>
   <br>
-  <% if current_user.is_admin? %>
+  <% if current_user.admin? %>
     <%= link_to 'Add New Property', new_contact_property_path(@contact) %>
   <% end %>
 <% end %>
 <br>
 <br>
 
-<% if current_user.is_admin? %>
+<% if current_user.admin? %>
   <%= link_to 'Edit Contact', edit_contact_path(@contact) %> |
 <% end %>
 

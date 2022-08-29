@@ -1,8 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Plant, type: :model do
   let(:contact) { Contact.create(name: 'John Doe', contact_type: 'Client', email: 'example@example.com') }
-  let(:property) { Property.create(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10, contact_id: contact.id) }
+  let(:property) do
+    Property.create(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10,
+                    contact_id: contact.id)
+  end
   let(:plant) { Plant.new(name: 'Plant 1', property_id: property.id) }
 
   describe 'validations' do
@@ -32,5 +37,3 @@ RSpec.describe Plant, type: :model do
     end
   end
 end
-
-

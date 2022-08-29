@@ -27,7 +27,7 @@
         <td><%= property.plants_row_spacing %></td>
         <td><%= property.plants_column_spacing %></td>
         <td><%= link_to 'Show', [@contact, property] %></td>
-        <% if current_user.is_admin? %>
+        <% if current_user.admin? %>
           <td><%= link_to 'Edit', edit_contact_property_path([@contact, property]) %></td>
           <td><%= link_to 'Destroy', [@contact, @property], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -37,6 +37,6 @@
 </table>
 
 <br>
-<% if current_user.is_admin? %>
+<% if current_user.admin? %>
   <%= link_to 'New Property', new_contact_property_path %>
 <% end %>

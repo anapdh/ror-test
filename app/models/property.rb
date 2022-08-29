@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Property < ApplicationRecord
   before_save :plants_number_calc
   before_create :set_properties_max
@@ -18,9 +20,9 @@ class Property < ApplicationRecord
   end
 
   def set_properties_max
-    if self.contact.properties.count >= 3
-      errors.add(:base, 'You can only have 3 properties per contact')
-      throw(:abort)
-    end
+    return unless contact.properties.count >= 3
+
+    errors.add(:base, 'You can only have 3 properties per contact')
+    throw(:abort)
   end
 end

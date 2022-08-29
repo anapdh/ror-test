@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
@@ -55,24 +57,28 @@ RSpec.describe Contact, type: :model do
     end
 
     it 'is not valid with more than 3 properties' do
-      contact.properties.build(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-      contact.properties.build(name: 'Property 2', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-      contact.properties.build(name: 'Property 3', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
-      contact.properties.build(name: 'Property 4', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10)
+      contact.properties.build(name: 'Property 1', plantation_area: 100, plants_row_spacing: 10,
+                               plants_column_spacing: 10)
+      contact.properties.build(name: 'Property 2', plantation_area: 100, plants_row_spacing: 10,
+                               plants_column_spacing: 10)
+      contact.properties.build(name: 'Property 3', plantation_area: 100, plants_row_spacing: 10,
+                               plants_column_spacing: 10)
+      contact.properties.build(name: 'Property 4', plantation_area: 100, plants_row_spacing: 10,
+                               plants_column_spacing: 10)
       expect(contact).to_not be_valid
     end
   end
 
   describe 'methods' do
-    describe '#is_provider?' do
+    describe '#provider?' do
       it 'is a provider' do
         contact.contact_type = 'Provider'
-        expect(contact.is_provider?).to be true
+        expect(contact.provider?).to be true
       end
 
       it 'is not a provider' do
         contact.contact_type = 'Client'
-        expect(contact.is_provider?).to be false
+        expect(contact.provider?).to be false
       end
     end
   end
@@ -85,8 +91,11 @@ RSpec.describe Contact, type: :model do
   end
 
   describe 'nested attributes' do
-    let(:contact_with_properties) { Contact.new(name: 'John Doe', contact_type: 'Client', email: 'client@example.com',
-      properties_attributes: [{ name: 'Property 1', plantation_area: 100, plants_row_spacing: 10, plants_column_spacing: 10 }]) }
+    let(:contact_with_properties) do
+      Contact.new(name: 'John Doe', contact_type: 'Client', email: 'client@example.com',
+                  properties_attributes: [{ name: 'Property 1', plantation_area: 100,
+                                            plants_row_spacing: 10, plants_column_spacing: 10 }])
+    end
 
     it 'accepts nested attributes for properties' do
       expect(contact_with_properties).to be_valid
