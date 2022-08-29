@@ -103,9 +103,9 @@ RSpec.describe Property, type: :model do
   end
 
   describe 'methods' do
-    describe '#plants_number_calc' do
+    describe '#set_plants_number' do
       it 'returns the number of plants' do
-        expect(property.plants_number_calc).to eq 1
+        expect(property.set_plants_number).to eq 1
       end
     end
 
