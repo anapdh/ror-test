@@ -19,7 +19,7 @@ class Property < ApplicationRecord
 
   def set_properties_max
     if self.contact.properties.count >= 3
-      errors.add(:base, "Limit of properties is 3")
+      errors.add(:base, 'You can only have 3 properties per contact')
       throw(:abort)
     end
   end
