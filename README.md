@@ -21,7 +21,7 @@ In order to create and migrate the database, you'll need to access the file conf
 
 Now your environment is ready to run the project! Type `rails s`, open your browser and type `localhost:3000`.
 
-3. Run the test suite: `rspec`
+3. Run the tests: `rspec`
 
 ## About the project:
 
@@ -30,8 +30,8 @@ The project contains the requisites given in the [code_challenge_ror](https://gi
 There are two types of users, guest and Admin. Only an Admin can create, edit and delete Commercial Contacts and add, edit or delete properties to them. Guests can only see Commercial Contacts details.
 
 The seed will provide the users, in order to access you can use:
-Admin: `email: admin@example.com, password: password`
-Guest: `email: guest@example.com, password: password`
+* Admin: `email: admin@example.com, password: password`
+* Guest: `email: guest@example.com, password: password`
 
 Any new user will also be a guest. So it's important use the Admin user to explore the project's features.
 
