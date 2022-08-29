@@ -1,0 +1,44 @@
+<%= form_for([@contact, property]) do |form| %>
+  <% if property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plantation_area %>
+    <%= form.number_field :plantation_area %><small> in meters</small>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :plants do |s| %>
+      <%= s.label :name, 'Plant Specie' %>
+      <%= s.select :name, Plant::PLANT_SPECIES_OPTIONS, include_blank: true %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plants_row_spacing %>
+    <%= form.number_field :plants_row_spacing %><small> in meters</small>
+  </div>
+
+  <div class="field">
+    <%= form.label :plants_column_spacing %>
+    <%= form.number_field :plants_column_spacing %><small> in meters</small>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

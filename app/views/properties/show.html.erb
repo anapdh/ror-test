@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @property.name %>
+</p>
+
+<p>
+  <strong>Plantation area:</strong>
+  <%= @property.plantation_area %>
+</p>
+
+<p>
+  <strong>Plant specie:</strong>
+  <%= @property.plant_specie %>
+</p>
+
+<p>
+  <strong>Plants number:</strong>
+  <%= @property.plants_number %>
+</p>
+
+<p>
+  <strong>Plants row spacing:</strong>
+  <%= @property.plants_row_spacing %>
+</p>
+
+<p>
+  <strong>Plants column spacing:</strong>
+  <%= @property.plants_column_spacing %>
+</p>
+
+<p>
+  <strong>Number of plants available for this area:</strong>
+  <%= @property.plants_number %>
+</p>
+
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_contact_property_path %> |
+<% end %>
+<%= link_to 'Back', @contact %>
+
+<% if current_user.admin? %>
+  <%= button_to "Destroy", [@contact, @property], method: :delete %>
+<% end %>

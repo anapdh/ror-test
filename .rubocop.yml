@@ -1,0 +1,35 @@
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+  Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - lib/**/*.rb
+    - spec/**/*.rb
+  Exclude:
+    - bin/**/*
+    - node_modules/**/*
+    - vendor/**/*
+    - config/environments/development.rb
+    - config/environments/production.rb
+    - config/initializers/devise.rb
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

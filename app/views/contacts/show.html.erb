@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @contact.name %>
+</p>
+
+<p>
+  <strong>Contact Type:</strong>
+  <%= @contact.contact_type %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contact.email %>
+</p>
+
+<% if @contact.provider? %>
+  <p>
+    <strong>Available Properties:
+      <%= @contact.properties.count %>
+    </strong>
+  </p>
+
+  <% @contact.properties.each do |p| %>
+    <li>Property Name: <%= p.name %></li>
+    <li>Plantation Area: <%= p.plantation_area %>m</li>
+    <li>Plant Specie: <%= p.plant_specie %></li>
+    <li>Row Spacing: <%= p.plants_row_spacing %>m</li>
+    <li>Column Spacing: <%= p.plants_column_spacing %>m</li>
+    <br>
+    <li>Number of plants available for this area: <strong><%= p.plants_number %></strong></li>
+    <% if current_user.admin? %>
+      <%= link_to 'Edit Property', edit_contact_property_path(@contact, p) %> |
+      <%= link_to 'Delete', [@contact, p], method: :delete, data: { confirm: 'Are you sure ou want to delete this property?' } %>
+    <% end %>
+    <hr>
+  <% end %>
+  <% if current_user.admin? %>
+    <%= link_to 'Add New Property', new_contact_property_path(@contact) %>
+  <% end %>
+<% end %>
+<br>
+<br>
+
+<% if current_user.admin? %>
+  <%= link_to 'Edit Contact', edit_contact_path(@contact) %> |
+<% end %>
+
+<%= link_to 'Back to Contacts', contacts_path %>
